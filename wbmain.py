@@ -1,18 +1,17 @@
 import sys
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtWebEngineWidgets import *
-
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, QToolBar, QLineEdit
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
+
         self.browser = QWebEngineView()
         self.browser.setUrl(QUrl('https://www.google.com/'))
         self.setCentralWidget(self.browser)
         self.showMaximized()
 
-        # navbar
         navbar = QToolBar()
         self.addToolBar(navbar)
 
@@ -48,8 +47,8 @@ class MainWindow(QMainWindow):
     def update_url(self, q):
         self.url_bar.setText(q.toString())
 
-
 app = QApplication(sys.argv)
 QApplication.setApplicationName('Web Browser using Python')
 window = MainWindow()
-app.exec_()
+window.show()
+sys.exit(app.exec_())
